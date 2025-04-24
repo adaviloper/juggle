@@ -39,7 +39,7 @@ M.toggle_arrow_function_under_cursor = function()
 
    local access_type = "member_access_expression"
 
-   local queries = require('juggle.' .. lang).queries
+   local queries = require('juggle_filetypes.' .. lang).queries
 
 
    local keyset={}

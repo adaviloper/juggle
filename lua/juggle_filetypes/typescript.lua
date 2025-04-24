@@ -27,7 +27,8 @@ M.queries = {
   arrow_function = {
     query = query.parse("typescript", [[
     (arrow_function
-      parameters: (formal_parameters) @params
+      parameter: (_)* @params
+      parameters: (_)* @params
       return_type: (type_annotation)* @return_type
       body: (_) @body)
     ]]),

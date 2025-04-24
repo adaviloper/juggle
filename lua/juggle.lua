@@ -1,4 +1,4 @@
-local my_cool_module = require("juggle.init")
+local core = require("juggle_filetypes")
 
 local juggle = {}
 
@@ -16,13 +16,11 @@ function juggle.setup(options)
    -- function/module makes it easier to reason about all possible changes
    juggle.options = with_defaults(options)
 
-
-
    -- do here any startup your plugin needs, like creating commands and
    -- mappings that depend on values passed in options
    vim.api.nvim_create_user_command(
       "ToggleSyntax",
-      my_cool_module.toggle_arrow_function_under_cursor,
+      core.toggle_arrow_function_under_cursor,
       {}
    )
 end

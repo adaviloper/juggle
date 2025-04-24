@@ -25,6 +25,10 @@ end
 
 
 describe("setup", function()
+  after_each(function ()
+    vim.cmd('bd')
+  end)
+
   it("updates arrow function syntax to block function syntax", function ()
     local bufnr, win_id = load_stub_to_buffer("javascript/arrow_function_syntax.js")
     vim.api.nvim_set_current_buf(bufnr)
@@ -47,6 +51,28 @@ describe("setup", function()
     )
   end)
 
+  it("updates arrow function syntax to block function syntax when there is a single parameter with no parentheses", function ()
+    local bufnr, win_id = load_stub_to_buffer("javascript/arrow_function_syntax_single_param.js")
+    vim.api.nvim_set_current_buf(bufnr)
+    vim.api.nvim_win_set_cursor(win_id, { 1, 19 })
+
+    vim.cmd('ToggleSyntax')
+
+    -- Get buffer content
+    local new_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+
+    -- Assert it changed
+    eq(
+      {
+        "const foo = n => {",
+        "  return n * 8;",
+        "};",
+        "",
+      },
+      new_lines
+    )
+  end)
+
   it("updates block function syntax to arrow function syntax", function ()
     local bufnr, win_id = load_stub_to_buffer("javascript/block_function_syntax.js")
     vim.api.nvim_set_current_buf(bufnr)
@@ -61,6 +87,26 @@ describe("setup", function()
     eq(
       {
         "const foo = () => 5 * 8;",
+        "",
+      },
+      new_lines
+    )
+  end)
+
+  it("updates block function syntax to arrow function syntax when there is a single parameter with no parentheses", function ()
+    local bufnr, win_id = load_stub_to_buffer("javascript/block_function_syntax_single_param.js")
+    vim.api.nvim_set_current_buf(bufnr)
+    vim.api.nvim_win_set_cursor(win_id, { 1, 19 })
+
+    vim.cmd('ToggleSyntax')
+
+    -- Get buffer content
+    local new_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+
+    -- Assert it changed
+    eq(
+      {
+        "const foo = n => n * 8;",
         "",
       },
       new_lines
