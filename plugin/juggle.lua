@@ -12,10 +12,11 @@ vim.g.loaded_my_awesome_plugin = 1
 -- create any global command that does not depend on user setup
 -- usually it is better to define most commands/mappings in the setup function
 -- Be careful to not overuse this file!
-local my_awesome_plugin = require("my_awesome_plugin")
+local my_awesome_plugin = require("juggle")
 
 vim.api.nvim_create_user_command(
   "MyAwesomePluginGenericGreet",
-  my_awesome_plugin.generic_greet,
-  {})
+  my_awesome_plugin.greet,
+  {}
+)
 
