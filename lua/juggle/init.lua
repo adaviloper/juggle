@@ -15,6 +15,10 @@ local function get_lang_from_buf(buf)
       }) or ""
    end
 
+   if ft == 'javascript' then
+      return 'typescript'
+   end
+
    return ft
 end
 
@@ -22,9 +26,8 @@ M.toggle_arrow_function_under_cursor = function()
    local buf = vim.api.nvim_get_current_buf() or 0
    local lang = get_lang_from_buf(buf)
 
-
    local parser, message = ts.get_parser(buf, lang, { error = false })
-   if parser == nil then
+   if message ~= nil then
       print('Parser could not be created: ' .. message)
       return
    end
