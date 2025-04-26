@@ -15,7 +15,7 @@ local function get_lang_from_buf(buf)
       }) or ""
    end
 
-   if ft == 'javascript' then
+   if vim.tbl_contains({ 'vue', 'javascript' }, ft) then
       return 'typescript'
    end
 
