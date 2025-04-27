@@ -2,15 +2,95 @@
 
 [![Integration][integration-badge]][integration-runs]
 
-A template to create Neovim plugins written in [Lua][lua].
+This plugin will toggle between syntaxes in order to more easily switch between two equivalent formats.
 
-## Using
+```js
+// a
+const myFunc = () => 'some return value';
 
-Clone/download it locally and change the references to `my_awesome_plugin`, 
-`my_cool_module` accordingly to your new plugin name. Don't forget to edit the
-[help][help] file accordingly.
+// b
+const myFunc = () => {
+  return 'some return value'
+};
+```
 
-You'll need to install [Lua][lua] and [LuaRocks][luarocks] to run the linter.
+## Installation
+
+### LazyNvim
+
+```lua
+{
+  'adaviloper/juggle',
+  ft = { -- support for current files
+    'javascript',
+    'typescript',
+    'php',
+    'vue',
+  },
+  config = function ()
+    require('juggle').setup({})
+  end
+}
+```
+
+
+## Usage
+
+This plugin exposes a single command for you to bind to whichever keymap you prefer.
+
+| Command | Description |
+| --- | --- |
+| `ToggleSyntax` | Toggle between two similar, supported syntaxes |
+
+## Supported Syntaxes
+
+### Javascript
+
+*Simple arrow style function to block arrow style*
+
+```js
+// a
+const myFunc = () => 'some return value';
+
+// b
+const myFunc = () => {
+  return 'some return value'
+};
+```
+
+
+### PHP
+
+*Array index access to property access*
+
+```php
+<?php
+// a
+$f = $myObject->foo;
+
+// b
+$f = $myObject['foo'];
+```
+
+### Typescript
+
+*Simple arrow style function to block arrow style*
+
+```ts
+// a
+const myFunc = (): string => 'some return value';
+
+// b
+const myFunc = (): string => {
+  return 'some return value'
+};
+```
+
+
+### Vue
+
+Inherits the functionality from Javascript/Typescript based on the `<script>` tag's `lang` attribute.
+
 
 ## Testing
 
