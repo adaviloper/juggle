@@ -1,5 +1,5 @@
 local utils = require "utils"
----@class TypescriptJuggle
+---@class JavascriptJuggle
 ---@field toggle_arrow_function_under_cursor function
 local M = {}
 
@@ -12,8 +12,6 @@ local function get_nodes(match, q)
       local name = q.captures[id]
       if name == "body" then
         body_node = matched_node[1]
-      elseif name == "return_type" then
-        type_node = matched_node[1]
       elseif name == "params" then
         param_node = matched_node[1]
       end
@@ -24,11 +22,10 @@ end
 
 M.queries = {
   arrow_function = {
-    query = query.parse("typescript", [[
+    query = query.parse("javascript", [[
     (arrow_function
       parameter: (_)* @params
       parameters: (_)* @params
-      return_type: (type_annotation)* @return_type
       body: (_) @body)
     ]]),
     callback = function(buf, node, match, row, col)
