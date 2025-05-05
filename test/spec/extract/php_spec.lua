@@ -12,9 +12,9 @@ end
 
 describe("extract variable", function()
   local test_cases = {
-    { start_col = 6, motion = "vEh", file = "extract_variable", expected_var = "$bar = 'bar';", expected_assignment = "$foo = $bar;" },
-    { start_col = 6, motion = "vE", file = "extract_variable_partial", expected_var = "$bar = 'bar';", expected_assignment = "$foo = $bar . ' acme';" },
-    { start_col = 6, motion = "v$hh", file = "extract_variable_partial", expected_var = "$bar = 'bar' . ' acme';", expected_assignment = "$foo = $bar;" },
+    { start_col = 7, motion = "vel", file = "extract_variable", expected_var = "$bar = 'bar';", expected_assignment = "$foo = $bar;" },
+    { start_col = 7, motion = "vE", file = "extract_variable_partial", expected_var = "$bar = 'bar';", expected_assignment = "$foo = $bar . ' acme';" },
+    { start_col = 7, motion = "v$hh", file = "extract_variable_partial", expected_var = "$bar = 'bar' . ' acme';", expected_assignment = "$foo = $bar;" },
   }
   
   for idx, case in ipairs(test_cases) do

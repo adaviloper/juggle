@@ -12,9 +12,9 @@ end
 
 describe("extract variable", function()
   local test_cases = {
-    { start_col = 11, motion = "vEh", file = "extract_variable", expected_var = "const bar = 'bar';", expected_assignment = "const foo = bar;" },
-    { start_col = 11, motion = "vE", file = "extract_variable_partial", expected_var = "const bar = 'bar';", expected_assignment = "const foo = bar + ' acme';" },
-    { start_col = 11, motion = "v$hh", file = "extract_variable_partial", expected_var = "const bar = 'bar' + ' acme';", expected_assignment = "const foo = bar;" },
+    { start_col = 12, motion = "vEh", file = "extract_variable", expected_var = "const bar = 'bar';", expected_assignment = "const foo = bar;" },
+    { start_col = 12, motion = "vE", file = "extract_variable_partial", expected_var = "const bar = 'bar';", expected_assignment = "const foo = bar + ' acme';" },
+    { start_col = 12, motion = "v$hh", file = "extract_variable_partial", expected_var = "const bar = 'bar' + ' acme';", expected_assignment = "const foo = bar;" },
   }
   
   for idx, case in ipairs(test_cases) do

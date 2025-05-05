@@ -18,7 +18,7 @@ M.extract = function (opts)
   end
 
   local start_row = start_pos[2] - 1
-  local start_col = start_pos[3]
+  local start_col = start_pos[3] - 1
   local end_row = end_pos[2] - 1
   local end_col = end_pos[3]
 
