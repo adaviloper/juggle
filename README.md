@@ -41,6 +41,10 @@ This plugin exposes a single command for you to bind to whichever keymap you pre
 | Command | Description |
 | --- | --- |
 | `ToggleSyntax` | Toggle between two similar, supported syntaxes |
+| `Extract <type>` | In visual mode, extract the selected text into a separate node of <type> |
+
+### Extract Types
+- `variable` : Extract selected text to a variable
 
 ## Supported Syntaxes
 
