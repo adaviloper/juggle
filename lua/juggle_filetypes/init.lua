@@ -1,30 +1,14 @@
+local buf_utils = require('core.buf_utils')
+
 ---@class CustomModule
 ---@field toggle_arrow_function_under_cursor function
 local M = {}
 
 local ts = vim.treesitter
 
-local function get_lang_from_buf(buf)
-   local ft = vim.bo[buf].filetype
-   if ft == "" then
-      local match = require("vim.filetype").match
-      ft = match({
-         buf = buf,
-         filename = vim.api.nvim_buf_get_name(buf),
-         contents = vim.api.nvim_buf_get_lines(buf, 0, -1, false),
-      }) or ""
-   end
-
-   if vim.tbl_contains({ 'vue' }, ft) then
-      return 'typescript'
-   end
-
-   return ft
-end
-
 M.toggle_arrow_function_under_cursor = function()
    local buf = vim.api.nvim_get_current_buf() or 0
-   local lang = get_lang_from_buf(buf)
+   local lang = buf_utils.get_lang_from_buf(buf)
 
    local parser, message = ts.get_parser(buf, lang, { error = false })
    if message ~= nil then
@@ -40,7 +24,6 @@ M.toggle_arrow_function_under_cursor = function()
    local access_type = "member_access_expression"
 
    local queries = require('juggle_filetypes.' .. lang).queries
-
 
    local keyset={}
    local n=0

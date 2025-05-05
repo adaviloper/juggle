@@ -1,4 +1,5 @@
-local core = require("juggle_filetypes")
+local juggle_ft = require("juggle_filetypes")
+local extract = require("extract_filetypes")
 
 local juggle = {}
 
@@ -20,8 +21,15 @@ function juggle.setup(options)
    -- mappings that depend on values passed in options
    vim.api.nvim_create_user_command(
       "ToggleSyntax",
-      core.toggle_arrow_function_under_cursor,
+      juggle_ft.toggle_arrow_function_under_cursor,
       {}
+   )
+   vim.api.nvim_create_user_command(
+      "Extract",
+      extract.extract,
+      {
+         nargs = 1
+      }
    )
 end
 
